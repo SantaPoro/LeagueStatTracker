@@ -1,0 +1,24 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: frontend
+      dockerfile: dev.Dockerfile
+    image: league-stats-tracker-frontend:latest-dev
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - /usr/src/app/node_modules
+      - ./frontend:/usr/src/app
+
+  backend:
+    build:
+      context: backend
+      dockerfile: dev.Dockerfile
+    image: league-stats-tracker-backend:latest-dev
+    ports:
+      - 8080:3000
+    volumes:
+      - /usr/src/app/node_modules
+      - ./backend:/usr/src/app
